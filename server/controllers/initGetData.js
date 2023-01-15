@@ -6,6 +6,8 @@ exports.redirectFromHome = (req, res) => {
 
 }
 
+var newURL = 'http://localhost:3030';
+var baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
 
 exports.getCurrentProductCardControl = (req, res) => {
 
@@ -15,7 +17,7 @@ exports.getCurrentProductCardControl = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}`,
+    url: `${newURL}/products/${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
 
@@ -35,7 +37,7 @@ exports.getRelatedProductCardControl = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}`,
+    url: `${newURL}/products/${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
 
@@ -55,7 +57,7 @@ exports.getProductStylesControl = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}/styles`,
+    url: `${newURL}/products/${incomingParamProductId}/styles`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -74,7 +76,7 @@ exports.getProductRelatedControl = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}/related`,
+    url: `${newURL}/products/${incomingParamProductId}/related`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -148,7 +150,7 @@ exports.getCart = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`,
+    url: `${newURL}/cart`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)

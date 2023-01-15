@@ -1,10 +1,13 @@
 const axios = require('axios');
 
+var newURL = 'http://localhost:3030';
+var baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+
 exports.deleteCart = (req,res) => {
 
   const options = {
     method: 'DELETE',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`,
+    url: `${newURL}/cart`,
     headers: {Authorization: process.env.AUTH_SECRET}
   };
 
