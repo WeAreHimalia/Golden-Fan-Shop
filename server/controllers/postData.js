@@ -2,8 +2,8 @@ const axios = require('axios');
 const cloudinary = require('../cloudinary');
 const uploader = require('../multer');
 
-var newURL = 'http://localhost:3030';
-var baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+
+var ProductOverview_API_URL = 'http://localhost:3030';
 
 exports.postReviewForm = (req, res) => {
 
@@ -114,7 +114,7 @@ exports.postAddToCart = (req, res) => {
   var cartData = req.body.params;
   console.log('cartData: ', cartData);
   var options = {
-    url: `${newURL}/cart`,
+    url: `${ProductOverview_API_URL}/cart`,
     method: 'POST',
     headers: { Authorization: process.env.AUTH_SECRET },
     "Content-Type": 'application/json',
