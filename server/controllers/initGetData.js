@@ -6,6 +6,7 @@ exports.redirectFromHome = (req, res) => {
 }
 
 var ProductOverview_API_URL = 'http://localhost:3030';
+var QandA_API_URL = 'http://localhost:3050';
 
 exports.getCurrentProductCardControl = (req, res) => {
 
@@ -132,7 +133,7 @@ exports.getProductQnAControl = (req, res) => {
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${incomingParamProductId}`,
+    url: `${QandA_API_URL}?product_id=${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
