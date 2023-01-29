@@ -11,8 +11,6 @@ const QandA_API_URL = 'http://localhost:3030';
 
 exports.getCurrentProductCardControl = (req, res) => {
   var incomingParamProductId = req.query.id;
-  // var incomingParamProductId = req.params.id;
-  // console.log("🚀 ~ file: initGetData.js:7 ~ incomingParamProductId", incomingParamProductId)
 
   const options = {
     method: 'GET',
