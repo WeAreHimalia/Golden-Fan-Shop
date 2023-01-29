@@ -3,16 +3,17 @@ const cloudinary = require('../cloudinary');
 const uploader = require('../multer');
 
 
-var ProductOverview_API_URL = 'http://localhost:3030';
+const originalURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+const ProductOverview_API_URL = 'http://localhost:3030';
+const QandA_API_URL = 'http://localhost:3030';
 
 exports.postReviewForm = (req, res) => {
-
   var incomingReview = req.body;
   console.log('this is the incoming review: ', incomingReview);
 
   const options = {
     method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`,
+    url: `${originalURL}/reviews`,
     headers: { Authorization: process.env.AUTH_SECRET },
     "Content-Type": 'application/json',
     data: incomingReview
@@ -27,11 +28,12 @@ exports.postReviewForm = (req, res) => {
     res.status(500).send(error);
   });
 }
+
 exports.postQuestionForm = (req, res) => {
   var incomingQuestion = req.body;
   const options = {
     method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions`,
+    url: `${QandA_API_URL}/qa/questions`,
     headers: {Authorization: process.env.AUTH_SECRET},
     "Content-Type": 'application/json',
     data: incomingQuestion
@@ -54,7 +56,7 @@ exports.postAnswerForm = (req, res) => {
   delete incomingAnswer.questionId;
   const options = {
     method: 'POST',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`,
+    url: `${QandA_API_URL}/qa/questions/${questionId}/answers`,
     headers: {Authorization: process.env.AUTH_SECRET},
     "Content-Type": 'application/json',
     data: incomingAnswer
@@ -72,11 +74,10 @@ exports.postAnswerForm = (req, res) => {
 }
 
 exports.postClickTrack = (req, res) => {
-
   var clickTrackData = req.body;
 
   var options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    url: `${originalURL}/interactions`,
     method: 'POST',
     headers: { Authorization: process.env.AUTH_SECRET },
     "Content-Type": 'application/json',
@@ -110,11 +111,10 @@ exports.postImg = (req, res) => {
 }
 
 exports.postAddToCart = (req, res) => {
-
   var cartData = req.body.params;
   console.log('cartData: ', cartData);
   var options = {
-    url: `${ProductOverview_API_URL}/cart`,
+    url: `${originalURL}/cart`,
     method: 'POST',
     headers: { Authorization: process.env.AUTH_SECRET },
     "Content-Type": 'application/json',
@@ -131,4 +131,3 @@ exports.postAddToCart = (req, res) => {
     res.status(500).send(error);
   });
 }
-

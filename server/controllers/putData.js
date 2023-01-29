@@ -1,13 +1,16 @@
 const axios = require('axios');
 
-exports.putHelpClick = (req, res) => {
+const originalURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+const ProductOverview_API_URL = 'http://localhost:3030';
+const QandA_API_URL = 'http://localhost:3030';
 
+exports.putHelpClick = (req, res) => {
   const review_id = req.body.review_id;
   console.log('review id in server helpClick: ', review_id);
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${review_id}/helpful`,
+    url: `${originalURL}/reviews/${review_id}/helpful`,
     headers: { Authorization: process.env.AUTH_SECRET },
     // data: review_id
   };
@@ -24,13 +27,12 @@ exports.putHelpClick = (req, res) => {
 };
 
 exports.putReportClick = (req, res) => {
-
   const review_id = req.body.review_id;
   console.log('review id in server reportClick: ', review_id);
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${review_id}/report`,
+    url: `${originalURL}/reviews/${review_id}/report`,
     headers: { Authorization: process.env.AUTH_SECRET },
     // data: review_id
   };
@@ -51,7 +53,7 @@ exports.questionHelpfulness = (req, res) => {
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`,
+    url: `${QandA_API_URL}/qa/questions/${questionId}/helpful`,
     headers: {Authorization: process.env.AUTH_SECRET},
   };
 
@@ -71,7 +73,7 @@ exports.questionReported = (req, res) => {
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/report`,
+    url: `${QandA_API_URL}/qa/questions/${questionId}/report`,
     headers: {Authorization: process.env.AUTH_SECRET}
   };
 
@@ -91,7 +93,7 @@ exports.answerHelpfulness = (req, res) => {
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`,
+    url: `${QandA_API_URL}/qa/answers/${answerId}/helpful`,
     headers: {Authorization: process.env.AUTH_SECRET}
   };
 
@@ -111,7 +113,7 @@ exports.answerReported = (req,res) => {
 
   const options = {
     method: 'PUT',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`,
+    url: `${QandA_API_URL}/qa/answers/${answerId}/report`,
     headers: {Authorization: process.env.AUTH_SECRET}
   };
 
@@ -127,10 +129,9 @@ exports.answerReported = (req,res) => {
 }
 
 exports.deleteCart = (req,res) => {
-
   const options = {
     method: 'DELETE',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/cart`,
+    url: `${originalURL}/cart`,
     headers: {Authorization: process.env.AUTH_SECRET}
   };
 
