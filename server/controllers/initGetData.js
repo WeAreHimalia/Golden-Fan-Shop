@@ -5,18 +5,18 @@ exports.redirectFromHome = (req, res) => {
   res.redirect('/ip/71704')
 }
 
-var ProductOverview_API_URL = 'http://localhost:3030';
-var QandA_API_URL = 'http://localhost:3050';
+const originalURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
+const ProductOverview_API_URL = 'http://localhost:3030';
+const QandA_API_URL = 'http://localhost:3030';
 
 exports.getCurrentProductCardControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
   // var incomingParamProductId = req.params.id;
   // console.log("🚀 ~ file: initGetData.js:7 ~ incomingParamProductId", incomingParamProductId)
 
   const options = {
     method: 'GET',
-    url: `${ProductOverview_API_URL}/products/${incomingParamProductId}`,
+    url: `${originalURL}/products/${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
 
@@ -31,12 +31,11 @@ exports.getCurrentProductCardControl = (req, res) => {
 }
 
 exports.getRelatedProductCardControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
 
   const options = {
     method: 'GET',
-    url: `${ProductOverview_API_URL}/products/${incomingParamProductId}`,
+    url: `${originalURL}/products/${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
 
@@ -51,12 +50,11 @@ exports.getRelatedProductCardControl = (req, res) => {
 }
 
 exports.getProductStylesControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
 
   const options = {
     method: 'GET',
-    url: `${ProductOverview_API_URL}/products/${incomingParamProductId}/styles`,
+    url: `${originalURL}/products/${incomingParamProductId}/styles`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -70,12 +68,11 @@ exports.getProductStylesControl = (req, res) => {
 }
 
 exports.getProductRelatedControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${incomingParamProductId}/related`,
+    url: `${originalURL}/products/${incomingParamProductId}/related`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -90,12 +87,11 @@ exports.getProductRelatedControl = (req, res) => {
 };
 
 exports.getProductReviewsControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
 
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${incomingParamProductId}`,
+    url: `${originalURL}/reviews?product_id=${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -112,7 +108,7 @@ exports.getProductReviewMeta = (req, res) => {
   var incomingParamProductId = req.query.id;
   const options = {
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${incomingParamProductId}`,
+    url: `${originalURL}/reviews/meta?product_id=${incomingParamProductId}`,
     // params: { product_id: incomingParamProductId },
     headers: { Authorization: process.env.AUTH_SECRET }
   };
@@ -128,12 +124,11 @@ exports.getProductReviewMeta = (req, res) => {
 
 
 exports.getProductQnAControl = (req, res) => {
-
   var incomingParamProductId = req.query.id;
 
   const options = {
     method: 'GET',
-    url: `${QandA_API_URL}?product_id=${incomingParamProductId}`,
+    url: `${QandA_API_URL}/qa/questions?product_id=${incomingParamProductId}`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
@@ -145,11 +140,11 @@ exports.getProductQnAControl = (req, res) => {
     res.status(500).send(err)
   })
 }
-exports.getCart = (req, res) => {
 
+exports.getCart = (req, res) => {
   const options = {
     method: 'GET',
-    url: `${ProductOverview_API_URL}/cart`,
+    url: `${originalURL}/cart`,
     headers: { Authorization: process.env.AUTH_SECRET },
   };
   axios(options)
